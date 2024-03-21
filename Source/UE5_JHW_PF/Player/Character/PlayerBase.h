@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "../../Global/Enum/AnimState.h"
 #include "PlayerBase.generated.h"
 
 UCLASS()
@@ -25,6 +26,20 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	//Getter, Setter of Member variable
+public:
+
+	void SetPlayerAnimState(AnimState _AnimState);
+	UAnimMontage* GetAnimMontageToAnimState(AnimState _AnimState) const;
+
+protected:
+
+	UPROPERTY(Category = "Animation_Value", EditAnywhere, BlueprintReadWrite)
+	AnimState m_AnimState;
+
+	UPROPERTY(Category = "Animation_Value", EditAnywhere, BlueprintReadWrite)
+	TMap<AnimState, UAnimMontage*> m_All_Animstate;
 
 private:
 

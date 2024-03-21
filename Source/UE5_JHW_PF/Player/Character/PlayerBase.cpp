@@ -69,6 +69,25 @@ void APlayerBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 }
 
+void APlayerBase::SetPlayerAnimState(AnimState _AnimState)
+{
+	if (GetAnimMontageToAnimState(_AnimState) == nullptr)
+	{
+		return;
+	}
+
+	m_AnimState = _AnimState;
+}
+
+UAnimMontage* APlayerBase::GetAnimMontageToAnimState(AnimState _AnimState) const
+{
+	if (m_All_Animstate.FindRef(_AnimState) == nullptr)
+	{
+		return nullptr;
+	}
+	return m_All_Animstate.FindRef(_AnimState);
+}
+
 
 
 
