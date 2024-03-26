@@ -31,7 +31,10 @@ public:
 public:
 
 	void SetPlayerAnimState(AnimState _AnimState);
+	AnimState GetAnimState() const;
+
 	UAnimMontage* GetAnimMontageToAnimState(AnimState _AnimState) const;
+	TMap<AnimState, UAnimMontage*> GetAllAnimations() const;
 
 protected:
 
@@ -39,7 +42,7 @@ protected:
 	AnimState m_AnimState;
 
 	UPROPERTY(Category = "Animation_Value", EditAnywhere, BlueprintReadWrite)
-	TMap<AnimState, UAnimMontage*> m_All_Animstate;
+	TMap<AnimState, UAnimMontage*> m_Player_All_Animations;
 
 private:
 

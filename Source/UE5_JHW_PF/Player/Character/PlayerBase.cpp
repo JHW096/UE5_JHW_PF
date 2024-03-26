@@ -79,13 +79,28 @@ void APlayerBase::SetPlayerAnimState(AnimState _AnimState)
 	m_AnimState = _AnimState;
 }
 
+AnimState APlayerBase::GetAnimState() const
+{
+	return m_AnimState;
+}
+
 UAnimMontage* APlayerBase::GetAnimMontageToAnimState(AnimState _AnimState) const
 {
-	if (m_All_Animstate.FindRef(_AnimState) == nullptr)
+	if (m_Player_All_Animations.FindRef(_AnimState) == nullptr)
 	{
 		return nullptr;
 	}
-	return m_All_Animstate.FindRef(_AnimState);
+	return m_Player_All_Animations.FindRef(_AnimState);
+}
+
+TMap<AnimState, UAnimMontage*> APlayerBase::GetAllAnimations() const
+{
+	if (m_Player_All_Animations.Num())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("%s(%u) PlayeBase has not some animations.."), __FUNCTION__, __LINE__);
+	}
+
+	return m_Player_All_Animations;
 }
 
 
