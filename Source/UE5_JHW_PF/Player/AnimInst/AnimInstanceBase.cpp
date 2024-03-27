@@ -10,6 +10,11 @@ void UAnimInstanceBase::NativeBeginPlay()
 
 	//Get Animations from Owning Player
 	m_AnimInst_All_Animations = Cast<APlayerBase>(GetOwningActor())->GetAllAnimations();
+
+	//Delegate Bindging
+	{
+		OnMontageBlendingOut.AddDynamic(this, &UAnimInstanceBase::MontageBlendOut);
+	}
 }
 
 void UAnimInstanceBase::NativeUpdateAnimation(float DeltaSeconds)
@@ -34,5 +39,14 @@ void UAnimInstanceBase::NativeUpdateAnimation(float DeltaSeconds)
 	if (!Montage_IsPlaying(m_CurrentMontage))
 	{
 		Montage_Play(m_CurrentMontage, m_AnimSpeed);
+	}
+}
+
+void UAnimInstanceBase::MontageBlendOut(UAnimMontage* _Anim, bool _Inter)
+{
+	if (_Anim == m_AnimInst_All_Animations[AnimState::SLOW_RUN])
+	{
+		m_AnimState = AnimState::IDLE;
+		Cast<APlayerBase>(GetOwningActor())->SetPlayerAnimState(m_AnimState);
 	}
 }

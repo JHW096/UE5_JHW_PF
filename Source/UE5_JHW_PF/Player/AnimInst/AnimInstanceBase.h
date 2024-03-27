@@ -21,7 +21,11 @@ protected:
 	void NativeUpdateAnimation(float DeltaSeconds) override;
 
 public:
-	//
+	/*This Function(Delegate) requires Conditions that
+		1. Event Binding (AddDynamic) at NativeBeginPlay
+	*/
+	UFUNCTION()
+	virtual void MontageBlendOut(UAnimMontage* _Anim, bool _Inter);
 
 protected:
 
