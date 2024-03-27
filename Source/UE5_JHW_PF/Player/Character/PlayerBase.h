@@ -36,6 +36,10 @@ public:
 	UAnimMontage* GetAnimMontageToAnimState(AnimState _AnimState) const;
 	TMap<AnimState, UAnimMontage*> GetAllAnimations() const;
 
+public:
+
+	void GroundSpeedChecek();
+
 protected:
 
 	UPROPERTY(Category = "Animation_Value", EditAnywhere, BlueprintReadWrite)

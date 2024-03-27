@@ -60,6 +60,7 @@ void APlayerBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	GroundSpeedChecek();
 }
 
 // Called to bind functionality to input
@@ -101,6 +102,14 @@ TMap<AnimState, UAnimMontage*> APlayerBase::GetAllAnimations() const
 	}
 
 	return m_Player_All_Animations;
+}
+
+void APlayerBase::GroundSpeedChecek()
+{
+	if (!GetCharacterMovement()->IsFalling())
+	{
+		m_AnimState = GetVelocity().Size() > 1.0f ? AnimState::SLOW_RUN : AnimState::IDLE;
+	}
 }
 
 
